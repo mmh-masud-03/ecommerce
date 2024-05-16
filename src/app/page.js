@@ -1,5 +1,6 @@
-import Image from "next/image";
-
+"use client";
+import { Provider } from "react-redux";
+import store from "@/store";
 export default function Home() {
-  return <div></div>;
+  return <Provider store={store}>hello</Provider>;
 }
