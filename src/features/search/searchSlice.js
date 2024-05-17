@@ -1,11 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { fetchSearchProducts } from "./searchThunk";
+
 const initialState = {
   searchQuery: "",
   searchResults: [],
   isLoading: false,
   error: null,
 };
+
 const searchSlice = createSlice({
   name: "search",
   initialState,
@@ -17,15 +19,19 @@ const searchSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchSearchProducts.pending, (state) => {
-        (state.isLoading = true), (state.error = null);
+        state.isLoading = true;
+        state.error = null;
       })
       .addCase(fetchSearchProducts.fulfilled, (state, action) => {
-        (state.isLoading = false), (state.searchResults = action.payload);
+        state.isLoading = false;
+        state.searchResults = action.payload;
       })
-      .addCase(fetchSearchProducts.error, (state) => {
-        (state.isLoading = false), (state.error = action.payload);
+      .addCase(fetchSearchProducts.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.error.message;
       });
   },
 });
+
 export const { setSearchQuery } = searchSlice.actions;
 export default searchSlice.reducer;

@@ -1,7 +1,12 @@
 "use client";
 import Link from "next/link";
 import { useState } from "react";
-import { FaMagnifyingGlass } from "react-icons/fa6";
+import {
+  FaMagnifyingGlass,
+  FaCartShopping,
+  FaHeart,
+  FaUser,
+} from "react-icons/fa6";
 
 const Header = () => {
   const [search, setSearch] = useState("");
@@ -11,14 +16,14 @@ const Header = () => {
       .then((data) => console.log(data));
   };
   return (
-    <header className="bg-gray-800 text-white p-4">
+    <header className="bg-blue-800 text-white p-4">
       <nav className="flex justify-between items-center">
         <div>
-          <Link href="/" className="text-xl font-bold">
-            Next Commerce
+          <Link href="/" className="text-2xl font-semibold">
+            Gadget Hub
           </Link>
         </div>
-        <div className="flex flex-row gap-1 items-center bg-gray-200 w-1/3 justify-between">
+        <div className="flex flex-row gap-1 items-center bg-gray-200 w-1/3 justify-between rounded-lg">
           <FaMagnifyingGlass
             onClick={handleSearchProduct}
             size={24}
@@ -27,24 +32,24 @@ const Header = () => {
           <input
             type="text"
             placeholder="Search items by name or category"
-            className="px-3 py-2 w-11/12 outline-none text-black"
+            className="px-3 py-2 w-11/12 outline-none text-black rounded-lg"
             onChange={(e) => setSearch(e.target.value)}
           />
         </div>
-        <ul className="flex space-x-4">
+        <ul className="flex space-x-3 gap-4 text-2xl mr-3">
           <li>
-            <Link href="/shop" className="hover:text-gray-300">
-              Shop
+            <Link href="/cart" className="hover:text-gray-300">
+              <FaCartShopping />
             </Link>
           </li>
           <li>
-            <Link href="/cart" className="hover:text-gray-300">
-              Cart
+            <Link href="/wishlist" className="hover:text-gray-300">
+              <FaHeart />
             </Link>
           </li>
           <li>
             <Link href="/account" className="hover:text-gray-300">
-              Account
+              <FaUser />
             </Link>
           </li>
         </ul>
