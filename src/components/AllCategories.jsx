@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import CategoryCard from "./CategoryCard";
 
 function AllCategories() {
   const [products, setProducts] = useState([]);
@@ -29,17 +30,11 @@ function AllCategories() {
             (product) => product.category === category
           );
           return (
-            <div
+            <CategoryCard
+              category={category}
+              product={product}
               key={category}
-              className="flex flex-row gap-3 bg-green-100 justify-center items-center p-4 rounded-md"
-            >
-              <img
-                src={product.imageUrl}
-                alt={category}
-                className="rounded-full h-10 w-10"
-              />{" "}
-              <div>{category}</div>
-            </div>
+            />
           );
         })}
       </div>

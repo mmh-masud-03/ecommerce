@@ -1,8 +1,9 @@
+"use client";
 import Image from "next/image";
 import React from "react";
 import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
-import CategoryList from "./CategoryList";
+import CategoryList from "./TopCategoryList";
 import ExploreButton from "./ExploreButton";
 
 const handleDragStart = (e) => e.preventDefault();

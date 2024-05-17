@@ -4,11 +4,14 @@ import { useDispatch } from "react-redux";
 import { setSearchQuery } from "@/features/search/searchSlice";
 import { fetchSearchProducts } from "@/features/search/searchThunk";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 function SearchBox() {
   const [searchTerm, setSearchTerm] = useState("");
   const dispatch = useDispatch();
+  const router = useRouter();
   const handleSearch = (searchQuery) => {
+    router.push("/products");
     dispatch(setSearchQuery(searchQuery));
     dispatch(fetchSearchProducts(searchQuery));
   };
