@@ -26,7 +26,9 @@ const Header = () => {
         <SearchBox />
         <ul className="flex space-x-3 gap-4 text-2xl mr-3">
           <li>
-            <Link href={"/products/all"}>All Products</Link>
+            <Link className="text-xl" href={"/products/all"}>
+              All Products
+            </Link>
           </li>
           <li>
             <button
@@ -47,7 +49,7 @@ const Header = () => {
             </button>
           </li>
           <li>
-            <Link href="/account" className="hover:text-gray-300">
+            <Link href="/account" className="hover:text-gray-300 ">
               <FaUser />
             </Link>
           </li>

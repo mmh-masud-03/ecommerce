@@ -17,7 +17,7 @@ function CategoryPage() {
     return <div>Error: {error}</div>;
   }
   return (
-    <div>
+    <div className="mx-8">
       <div className="text-3xl font-semibold text-center m-4">
         All Products under {categoryName} category
       </div>

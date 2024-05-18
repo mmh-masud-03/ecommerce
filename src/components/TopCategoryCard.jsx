@@ -18,7 +18,7 @@ function TopCategoryCard({ name }) {
       className=" flex flex-row text-lg gap-1 items-center px-2 cursor-pointer"
       onClick={() => handleSearch(name)}
     >
-      <FaCircleDot className="text-slate-600" />
+      <FaCircleDot className="text-slate-600 mr-1" />
       <span>{name}</span>
     </button>
   );
