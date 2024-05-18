@@ -17,7 +17,11 @@ export default function RootLayout({ children }) {
       <ReduxProvider>
         <body className="bg-blue-200">
           <Header />
-          {children}
+          <main className="pt-20">
+            {" "}
+            {/* Adjust the padding-top value according to your header height */}
+            {children}
+          </main>{" "}
           <Footer />
         </body>
       </ReduxProvider>

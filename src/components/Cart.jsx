@@ -28,7 +28,7 @@ const Cart = ({ setShowCart }) => {
         </button>
         <h2 className="text-2xl font-bold mb-4">Cart</h2>
         {cartItems.length === 0 ? (
-          <p className="text-gray-600">Your cart is empty</p>
+          <p className="text-red-600">Your cart is empty</p>
         ) : (
           <div>
             <ul className="divide-y divide-gray-200">
@@ -44,9 +44,12 @@ const Cart = ({ setShowCart }) => {
                       className="w-16 h-16 object-cover rounded-md mr-4"
                     />
                     <div>
-                      <h3 className="text-lg font-semibold">{item.name}</h3>
+                      <h3 className="text-lg font-semibold text-black">
+                        {item.name}
+                      </h3>
                       <p className="text-gray-600">
-                        {item.quantity} x ${item.price} = ${item.totalPrice}
+                        {item.quantity} x ${item.price} = $
+                        {item.totalPrice.toFixed(2)}
                       </p>
                     </div>
                   </div>
