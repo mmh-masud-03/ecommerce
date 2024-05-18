@@ -5,9 +5,6 @@ import { FaCartShopping, FaHeart } from "react-icons/fa6";
 function ProductCard({ product }) {
   const { name, price, description, imageUrl } = product;
 
-  // Add a console log to check the imageUrl value
-  console.log("imageUrl:", imageUrl);
-
   return (
     <div className="flex flex-col items-center bg-slate-200 p-4 text-center pb-8 rounded">
       {imageUrl ? (

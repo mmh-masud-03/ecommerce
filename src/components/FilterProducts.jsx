@@ -1,89 +1,104 @@
 "use client";
 import { useEffect, useState } from "react";
-
+import { getAllCategories } from "@/utils/utilityFunctions";
+import { useDispatch } from "react-redux";
+import { setFilterQuery } from "@/features/filter/filterSlice";
+import { fetchFilterProducts } from "@/features/filter/filterThunk";
+import FilteredProducts from "./FilteredProducts";
 function FilterProducts() {
+  const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("");
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
-  const [products, setProducts] = useState([]);
-  const [query, setQuery] = useState({});
-
-  const getAllProducts = async () => {
-    const res = await fetch("/api/products");
-    const data = await res.json();
-    setProducts(data);
-  };
+  const dispatch = useDispatch();
+  const query = `category=${selectedCategory}&minPrice=${minPrice}&maxPrice=${maxPrice}`;
+  console.log(query);
 
   useEffect(() => {
-    getAllProducts();
+    const fetchCategories = async () => {
+      try {
+        const categories = await getAllCategories();
+        setCategories(categories);
+      } catch (error) {
+        console.error("Failed to fetch categories:", error);
+      }
+    };
+
+    fetchCategories();
   }, []);
 
-  const handleFilter = (e) => {
+  const handleSubmit = (e, filteQuery) => {
     e.preventDefault();
-    // Construct query parameters based on selected filters
-    const queryParams = {};
-    if (selectedCategory) queryParams.category = selectedCategory;
-    if (minPrice) queryParams.minPrice = minPrice;
-    if (maxPrice) queryParams.maxPrice = maxPrice;
-    // Call onFilter function with constructed query parameters
-    setQuery(queryParams);
+    dispatch(setFilterQuery(filteQuery));
+    dispatch(fetchFilterProducts(filteQuery));
   };
 
   return (
-    <div className="bg-slate-200 p-4 rounded-md">
-      <div className="mb-4">
-        <span className="block text-lg font-semibold mb-2">
-          Get the best product within your budget
-        </span>
-        <form onSubmit={handleFilter} className="flex flex-row gap-4">
-          <div>
-            <label htmlFor="category" className="block mb-1">
-              Category:
-            </label>
-            <select
-              id="category"
-              value={selectedCategory}
-              onChange={(e) => setSelectedCategory(e.target.value)}
-              className="p-2 border rounded-md w-full"
-            >
-              {...products.map((product) => (
-                <option value={product.category}>{product.category}</option>
-              ))}
-            </select>
-          </div>
-          <div>
-            <label htmlFor="minPrice" className="block mb-1">
-              Minimum Price:
-            </label>
-            <input
-              type="number"
-              id="minPrice"
-              value={minPrice}
-              onChange={(e) => setMinPrice(e.target.value)}
-              className="p-2 border rounded-md w-full"
-              placeholder="Enter minimum price"
-            />
-          </div>
-          <div>
-            <label htmlFor="maxPrice" className="block mb-1">
-              Maximum Price:
-            </label>
-            <input
-              type="number"
-              id="maxPrice"
-              value={maxPrice}
-              onChange={(e) => setMaxPrice(e.target.value)}
-              className="p-2 border rounded-md w-full"
-              placeholder="Enter maximum price"
-            />
-          </div>
-          <button
-            type="submit"
-            className="bg-blue-500 text-white p-2 rounded-md mt-4"
+    <div>
+      <div className="bg-slate-200 p-4 rounded-md mx-8 my-6">
+        <div className="mb-4">
+          <span className="block text-2xl font-semibold mb-6">
+            Get the best product within your budget
+          </span>
+          <form
+            className="flex flex-row gap-4"
+            onSubmit={(e) => handleSubmit(e, query)}
           >
-            Find
-          </button>
-        </form>
+            <div>
+              <label htmlFor="category" className="block mb-1">
+                Category:
+              </label>
+              <select
+                id="category"
+                value={selectedCategory}
+                onChange={(e) => setSelectedCategory(e.target.value)}
+                className="p-2 border rounded-md w-full"
+              >
+                <option value="">Select a category</option>
+                {categories.map((category) => (
+                  <option key={category} value={category}>
+                    {category}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div>
+              <label htmlFor="minPrice" className="block mb-1">
+                Minimum Price:
+              </label>
+              <input
+                type="number"
+                id="minPrice"
+                value={minPrice}
+                onChange={(e) => setMinPrice(e.target.value)}
+                className="p-2 border rounded-md w-full"
+                placeholder="Enter minimum price"
+              />
+            </div>
+            <div>
+              <label htmlFor="maxPrice" className="block mb-1">
+                Maximum Price:
+              </label>
+              <input
+                type="number"
+                id="maxPrice"
+                value={maxPrice}
+                onChange={(e) => setMaxPrice(e.target.value)}
+                className="p-2 border rounded-md w-full"
+                placeholder="Enter maximum price"
+              />
+            </div>
+            <button
+              type="submit"
+              className="bg-blue-500 text-white p-2 rounded-md mt-7 h-10"
+            >
+              Find
+            </button>
+          </form>
+        </div>
+      </div>
+      <div className="mx-8 mb-6">
+        <FilteredProducts />
       </div>
     </div>
   );

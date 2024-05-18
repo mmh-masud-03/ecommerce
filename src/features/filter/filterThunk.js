@@ -1,15 +1,17 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-const fetchFilterProducts = createAsyncThunk(
+
+export const fetchFilterProducts = createAsyncThunk(
   "filter/fetchFilterProducts",
-  async (query, { rejectWithValue }) => {
+  async (filterQuery, { rejectWithValue }) => {
     try {
-      const response = await fetch(
-        `/api/products?${new URLSearchParams(query).toString()}`
-      );
-      return response.json();
+      const response = await fetch(`/api/products?${filterQuery}`);
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      const data = await response.json();
+      return data;
     } catch (err) {
-      return rejectWithValue(err.response.data);
+      return rejectWithValue(err.message);
     }
   }
 );
-export default fetchFilterProducts;
