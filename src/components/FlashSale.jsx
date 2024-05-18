@@ -21,13 +21,17 @@ function FlashSale() {
 
   const hours = Math.floor(timeRemaining / (1000 * 60 * 60));
   const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
-  const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+  // const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
 
   return (
     <div className="flex flex-col gap-3 mx-8">
       <span className="text-xl">Just For You</span>
       <span className="text-xl font-medium">
-        Sale Ends in: {hours}h {minutes}m {seconds}s
+        Sale Ends in:{" "}
+        <span className="text-red-600">
+          {" "}
+          {hours}h {minutes}m
+        </span>
       </span>
       <ProductList />
     </div>

@@ -18,11 +18,13 @@ function productPage() {
     return <div>Error: {error}</div>;
   }
   return (
-    <div>
+    <div className="mx-8">
       <HeroSection />
-      <div className="text-3xl text-center font-semibold">
-        Get your desired {categoryName}
-      </div>
+      {categoryName && (
+        <div className="text-3xl text-center font-semibold mb-6">
+          Get your desired {categoryName}
+        </div>
+      )}
       <div className="grid grid-cols-4 gap-4">
         {searchResults.map((product) => (
           <ProductCard key={product._id} product={product} />

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { FaCartShopping, FaHeart } from "react-icons/fa6";
 import { useDispatch } from "react-redux";
 import { addItemToCart } from "@/features/cart/cartSlice";
+import toast from "react-hot-toast";
 
 function ProductCard({ product }) {
   const { _id, name, price, description, imageUrl } = product;
@@ -12,6 +13,7 @@ function ProductCard({ product }) {
     dispatch(
       addItemToCart({ _id, name, price, description, imageUrl, quantity: 1 })
     );
+    toast.success(`${name} added to cart`);
   };
 
   return (
