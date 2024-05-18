@@ -12,7 +12,6 @@ function FilterProducts() {
   const [maxPrice, setMaxPrice] = useState("");
   const dispatch = useDispatch();
   const query = `category=${selectedCategory}&minPrice=${minPrice}&maxPrice=${maxPrice}`;
-  console.log(query);
 
   useEffect(() => {
     const fetchCategories = async () => {
