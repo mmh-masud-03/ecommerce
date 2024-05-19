@@ -35,7 +35,7 @@ function ProductCard({ product }) {
       <div className="flex flex-row justify-between items-center gap-5 mt-5">
         <button
           onClick={handleAddToCart}
-          className="flex flex-row justify-center items-center gap-5 bg-blue-600 px-4 py-2 rounded-lg text-lg text-white"
+          className="flex flex-row justify-center items-center gap-5 bg-blue-600 px-4 py-2 rounded-lg text-lg text-white hover:scale-105"
         >
           <FaCartShopping /> <span>Add to cart</span>
         </button>
