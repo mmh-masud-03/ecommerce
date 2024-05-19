@@ -32,7 +32,7 @@ const UserDropdown = ({ username }) => {
       </button>
       {showDropdown &&
         (username ? (
-          <div className="absolute right-0 mt-2 w-48 bg-white text-black rounded-md shadow-lg z-50 text-base">
+          <div className="absolute md:right-0 md:mt-2 w-48 bg-white text-black rounded-md shadow-lg z-50 text-base">
             <Link href="/profile">
               <div className="block px-4 py-2 hover:bg-gray-200">Profile</div>
             </Link>

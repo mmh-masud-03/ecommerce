@@ -49,12 +49,12 @@ const items = [
 
 const HeroSection = () => (
   <div className=" flex flex-row gap-2 justify-between mt-4">
-    <div className="">
+    <div className="hidden md:flex flex-col">
       <span className="text-2xl font-semibold mx-10 mt-5">Top Categories</span>
       <CategoryList />
       <ExploreButton />
     </div>
-    <div className="w-3/4 ml-4">
+    <div className="w-3/4 ml-4 border-2">
       <AliceCarousel
         mouseTracking
         items={items}

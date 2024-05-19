@@ -4,6 +4,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ReduxProvider from "@/providers/ReduxProvider";
 import { Toaster } from "react-hot-toast";
+import SmallHeader from "@/components/SmallHeader";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,6 +19,7 @@ export default function RootLayout({ children }) {
       <ReduxProvider>
         <body className="bg-blue-200">
           <Header />
+          <SmallHeader />
           <main className="pt-20">
             {" "}
             {/* Adjust the padding-top value according to your header height */}

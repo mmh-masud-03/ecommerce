@@ -9,7 +9,7 @@ import Image from "next/image";
 import { getUserNameFromCookie } from "@/utils/utilityFunctions";
 import UserDropdown from "./UserDropdown";
 
-const Header = () => {
+const SmallHeader = () => {
   const [showCart, setShowCart] = React.useState(false);
   const totalQuantity = useSelector((state) => state.cart.totalQuantity);
 
@@ -19,17 +19,13 @@ const Header = () => {
   const username = getUserNameFromCookie();
 
   return (
-    <header className=" fixed top-0 left-0 right-0 bg-blue-800 text-slate-300 p-4 z-50 shadow-md ">
-      <div className="md:hidden w-full">
-        <SearchBox />
-      </div>
-      <nav className="hidden md:flex justify-between items-center">
+    <header className="fixed bottom-0 left-0 right-0 bg-blue-800 text-slate-300 p-4 z-50 shadow-md md:hidden">
+      <nav className="flex justify-between items-center">
         <div>
           <Link href="/" className="text-2xl font-semibold">
             <Image src={"/assets/logo.jpg"} alt="logo" width={50} height={50} />{" "}
           </Link>
         </div>
-        <SearchBox />
         <ul className="flex flex-row items-stretch space-x-3 gap-4 text-4xl mr-3">
           <li>
             <Link className="text-xl" href={"/products/all"}>
@@ -70,4 +66,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default SmallHeader;

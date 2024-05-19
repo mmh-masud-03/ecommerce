@@ -1,6 +1,6 @@
 "use client";
 
-import { FaEnvelope, FaLock, FaPerson } from "react-icons/fa6";
+import { FaEnvelope, FaLock, FaUserCheck } from "react-icons/fa6";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
@@ -53,7 +53,10 @@ const Form = ({ type }) => {
       if (res.ok) {
         Cookies.set("userName", username, { expires: inOneHour });
         toast.success("Logged in successfully");
-        router.push("/products/all");
+        router.push("/");
+        setTimeout(() => {
+          window.location.reload();
+        }, 1500);
       }
 
       if (res.error) {
@@ -63,8 +66,8 @@ const Form = ({ type }) => {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen">
-      <div className="bg-white p-6 rounded-lg shadow-lg">
+    <div className="flex justify-center items-center h-[80vh] w-full">
+      <div className="bg-white p-6 rounded-lg shadow-lg md:w-1/3">
         <p className="text-2xl font-bold mb-4 text-center">Gadget Hub</p>
         <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
           {type === "register" && (
@@ -84,7 +87,7 @@ const Form = ({ type }) => {
                   placeholder="Username"
                   className="flex-1 outline-none"
                 />
-                <FaPerson className="text-gray-400" />
+                <FaUserCheck className="text-gray-400" />
               </div>
               {errors.username && (
                 <p className="text-red-500">{errors.username.message}</p>

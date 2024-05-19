@@ -47,7 +47,7 @@ const ProductDetails = ({ product }) => {
 
   return (
     <div className="max-w-4xl mx-auto pt-6">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="grid px-3 md:px-0 grid-cols-1 md:grid-cols-2 gap-8">
         <div>
           <img
             src={product.imageUrl}

@@ -21,7 +21,7 @@ function CategoryPage() {
       <div className="text-3xl font-semibold text-center m-4">
         All Products under {categoryName} category
       </div>
-      <div className="grid grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {searchResults.map((product) => (
           <ProductCard key={product._id} product={product} />
         ))}

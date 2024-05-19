@@ -40,7 +40,7 @@ function FilterProducts() {
             Get the best product within your budget
           </span>
           <form
-            className="flex flex-row gap-4"
+            className="flex flex-col md:flex-row gap-4"
             onSubmit={(e) => handleSubmit(e, query)}
           >
             <div>

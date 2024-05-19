@@ -24,13 +24,13 @@ function ProductCard({ product }) {
   };
 
   return (
-    <div className="flex flex-col items-center bg-slate-200 p-4 text-center pb-8 rounded">
+    <div className="flex flex-col justify-between items-center bg-slate-200 p-4 text-center pb-8 rounded">
       <div onClick={handleClick} className="cursor-pointer">
         {imageUrl ? (
           <img
             src={imageUrl}
             alt={`Image of ${name}`}
-            className="rounded-lg w-64 h-56 mx-auto mb-3 hover:scale-110"
+            className="rounded-lg w-30 h-30 md:w-64 md:h-56 mx-auto mb-3 hover:scale-110"
           />
         ) : (
           <div className="h-48 w-24 bg-gray-300 flex items-center justify-center">
@@ -47,7 +47,7 @@ function ProductCard({ product }) {
           onClick={handleAddToCart}
           className="flex flex-row justify-center items-center gap-5 bg-blue-600 px-4 py-2 rounded-lg text-lg text-white hover:scale-105"
         >
-          <FaCartShopping /> <span>Add to cart</span>
+          <FaCartShopping /> <span className="hidden md:flex">Add to cart</span>
         </button>
         <Link href={""}>
           <FaHeart className="text-4xl text-gray-400" />
