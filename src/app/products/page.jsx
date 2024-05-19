@@ -19,7 +19,7 @@ function productPage() {
   }
   return (
     <div className="mx-8">
-      <HeroSection />
+      {/* <HeroSection /> */}
       {categoryName && (
         <div className="text-3xl text-center font-semibold mb-6">
           Get your desired {categoryName}

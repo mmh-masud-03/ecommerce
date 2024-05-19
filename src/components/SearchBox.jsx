@@ -15,7 +15,11 @@ function SearchBox() {
     dispatch(setSearchQuery(searchQuery));
     dispatch(fetchSearchProducts(searchQuery));
   };
-
+  const handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+      handleSearch(searchTerm);
+    }
+  };
   return (
     <div className="flex flex-row gap-1 items-center bg-gray-200 w-1/3 justify-between rounded-lg">
       <input
@@ -23,6 +27,7 @@ function SearchBox() {
         placeholder="Search items by name or category"
         className="px-3 py-2 w-11/12 outline-none text-black rounded-lg"
         onChange={(e) => setSearchTerm(e.target.value)}
+        onKeyPress={handleKeyPress}
       />
       <FaMagnifyingGlass
         size={24}

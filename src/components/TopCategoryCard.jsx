@@ -9,7 +9,7 @@ function TopCategoryCard({ name }) {
   const router = useRouter();
   const dispatch = useDispatch();
   const handleSearch = (searchQuery) => {
-    router.push(`/products/${name}`);
+    router.push(`/products/category/${name}`);
     dispatch(setSearchQuery(searchQuery));
     dispatch(fetchSearchProducts(searchQuery));
   };

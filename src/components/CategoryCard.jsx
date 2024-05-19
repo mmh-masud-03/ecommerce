@@ -9,7 +9,7 @@ function CategoryCard({ category, product }) {
   const router = useRouter();
   const dispatch = useDispatch();
   const handleSearch = (searchQuery) => {
-    router.push(`/products/${category}`);
+    router.push(`/products/category/${category}`);
     dispatch(setSearchQuery(searchQuery));
     dispatch(fetchSearchProducts(searchQuery));
   };
