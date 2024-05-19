@@ -3,6 +3,7 @@ import User from "@/models/User";
 import { compare } from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { cookies } from "next/headers";
+import Cookies from "js-cookie";
 
 const generateToken = (user) => {
   return jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
@@ -43,6 +44,8 @@ export async function POST(req) {
         path: "/",
       };
       cookies().set("authToken", token, cookieOptions);
+      // cookies().set("user", JSON.stringify(user), cookieOptions);
+      Cookies.set("user", user);
       return new Response(JSON.stringify(user), { status: 200 });
     }
   } catch (err) {

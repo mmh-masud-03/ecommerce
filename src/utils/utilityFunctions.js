@@ -1,3 +1,4 @@
+import Cookies from "js-cookie";
 export const getAllCategories = async () => {
   try {
     const res = await fetch("/api/products");
@@ -7,4 +8,8 @@ export const getAllCategories = async () => {
     );
     return categories;
   } catch (err) {}
+};
+export const getUserNameFromCookie = () => {
+  const user = Cookies.get("userName");
+  return user;
 };

@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import Image from "next/image";
+import Cookies from "js-cookie";
 
 const Form = ({ type }) => {
   const {
@@ -45,8 +46,10 @@ const Form = ({ type }) => {
         },
         body: JSON.stringify(data),
       });
-
+      const user = await res.json();
+      const { username } = user;
       if (res.ok) {
+        Cookies.set("userName", username, { expires: 1 });
         toast.success("Logged in successfully");
         router.push("/products/all");
       }

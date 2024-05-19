@@ -1,11 +1,13 @@
 "use client";
 import React from "react";
 import Link from "next/link";
-import { FaCartShopping, FaHeart, FaUser } from "react-icons/fa6";
+import { FaCartShopping, FaHeart, FaU, FaUser } from "react-icons/fa6";
 import SearchBox from "./SearchBox";
 import Cart from "./Cart";
 import { useSelector } from "react-redux";
 import Image from "next/image";
+import { getUserNameFromCookie } from "@/utils/utilityFunctions";
+import UserDropdown from "./UserDropdown";
 
 const Header = () => {
   const [showCart, setShowCart] = React.useState(false);
@@ -14,9 +16,10 @@ const Header = () => {
   const toggleCart = () => {
     setShowCart(!showCart);
   };
+  const username = getUserNameFromCookie();
 
   return (
-    <header className="fixed top-0 left-0 right-0 bg-blue-800 text-white p-4 z-50 shadow-md ">
+    <header className="fixed top-0 left-0 right-0 bg-blue-800 text-slate-300 p-4 z-50 shadow-md ">
       <nav className="flex justify-between items-center">
         <div>
           <Link href="/" className="text-2xl font-semibold">
@@ -24,10 +27,16 @@ const Header = () => {
           </Link>
         </div>
         <SearchBox />
-        <ul className="flex space-x-3 gap-4 text-2xl mr-3">
+        <ul className="flex flex-row items-stretch space-x-3 gap-4 text-4xl mr-3">
           <li>
             <Link className="text-xl" href={"/products/all"}>
-              All Products
+              <Image
+                src={"/assets/products.svg"}
+                alt="menu"
+                width={35}
+                height={35}
+                className="text-white"
+              />
             </Link>
           </li>
           <li>
@@ -49,9 +58,7 @@ const Header = () => {
             </button>
           </li>
           <li>
-            <Link href="/account" className="hover:text-gray-300 ">
-              <FaUser />
-            </Link>
+            <UserDropdown username={username} />
           </li>
         </ul>
       </nav>
