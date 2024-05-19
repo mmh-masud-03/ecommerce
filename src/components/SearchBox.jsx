@@ -11,7 +11,7 @@ function SearchBox() {
   const dispatch = useDispatch();
   const router = useRouter();
   const handleSearch = (searchQuery) => {
-    router.push("/products");
+    router.push(`/products/search/${searchQuery}`);
     dispatch(setSearchQuery(searchQuery));
     dispatch(fetchSearchProducts(searchQuery));
   };
