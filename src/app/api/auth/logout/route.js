@@ -1,14 +1,24 @@
-import { serialize } from "cookie";
+import { cookies } from 'next/headers';
+import Cookies from 'js-cookie';
 
-export const POST = async (req, res) => {
-  const serialized = serialize("authToken", "", {
-    httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-    sameSite: "strict",
-    maxAge: -1,
-    path: "/",
-  });
+export async function GET(req) {
+  try {
+    const cookieOptions = {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'strict',
+      maxAge: 0, // Set the maxAge to 0 to remove the cookie
+      path: '/',
+    };
 
-  res.setHeader("Set-Cookie", serialized);
-  return new Response("Logged out", { status: 200 });
-};
+    cookies().set('authToken', '', cookieOptions);
+
+    Cookies.remove('user');
+
+    return new Response(JSON.stringify({ message: 'Logged out successfully' }), {
+      status: 200,
+    });
+  } catch (err) {
+    return new Response(err.message, { status: 500 });
+  }
+}

@@ -48,8 +48,10 @@ const Form = ({ type }) => {
       });
       const user = await res.json();
       const { username } = user;
+      const inOneHour = new Date(new Date().getTime() + 60 * 60 * 1000);
+
       if (res.ok) {
-        Cookies.set("userName", username, { expires: 1 });
+        Cookies.set("userName", username, { expires: inOneHour });
         toast.success("Logged in successfully");
         router.push("/products/all");
       }
