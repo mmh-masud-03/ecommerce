@@ -4,8 +4,11 @@ import { FaCartShopping, FaHeart } from "react-icons/fa6";
 import { useDispatch } from "react-redux";
 import { addItemToCart } from "@/features/cart/cartSlice";
 import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
+import { fetchProductById } from "@/features/products/productThunk";
 
 function ProductCard({ product }) {
+  const router = useRouter();
   const { _id, name, price, description, imageUrl } = product;
   const dispatch = useDispatch();
 
@@ -15,23 +18,30 @@ function ProductCard({ product }) {
     );
     toast.success(`${name} added to cart`);
   };
+  const handleClick = (e) => {
+    dispatch(fetchProductById(_id));
+    router.push(`/products/${_id}`);
+  };
 
   return (
     <div className="flex flex-col items-center bg-slate-200 p-4 text-center pb-8 rounded">
-      {imageUrl ? (
-        <img
-          src={imageUrl}
-          alt={`Image of ${name}`}
-          className="rounded-lg w-64 h-56 mx-auto mb-3 hover:scale-110"
-        />
-      ) : (
-        <div className="h-48 w-24 bg-gray-300 flex items-center justify-center">
-          <span>No Image Available</span>
-        </div>
-      )}
-      <h2 className="text-xl font-semibold">{name}</h2>
-      <p className="text-sm my-3 line-clamp-2 break-words">{description}</p>
-      <p className="text-xl font-semibold ">${price}</p>
+      <div onClick={handleClick} className="cursor-pointer">
+        {imageUrl ? (
+          <img
+            src={imageUrl}
+            alt={`Image of ${name}`}
+            className="rounded-lg w-64 h-56 mx-auto mb-3 hover:scale-110"
+          />
+        ) : (
+          <div className="h-48 w-24 bg-gray-300 flex items-center justify-center">
+            <span>No Image Available</span>
+          </div>
+        )}
+        <h2 className="text-xl font-semibold">{name}</h2>
+        <p className="text-sm my-3 line-clamp-2 break-words">{description}</p>
+        <p className="text-xl font-semibold ">${price}</p>
+      </div>
+
       <div className="flex flex-row justify-between items-center gap-5 mt-5">
         <button
           onClick={handleAddToCart}
