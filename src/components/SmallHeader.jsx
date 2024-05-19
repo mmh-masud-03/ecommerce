@@ -56,9 +56,9 @@ const SmallHeader = () => {
               <FaHeart />
             </button>
           </li>
-          <li>
+          {/* <li>
             <UserDropdown username={username} />
-          </li>
+          </li> */}
         </ul>
       </nav>
       {showCart && <Cart showCart={showCart} setShowCart={setShowCart} />}

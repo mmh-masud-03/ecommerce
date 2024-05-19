@@ -21,7 +21,7 @@ function SearchBox() {
     }
   };
   return (
-    <div className="flex flex-row gap-1 items-center bg-gray-200 w-1/3 justify-between rounded-lg">
+    <div className="flex flex-row gap-1 items-center bg-gray-200 md:w-1/3 justify-between rounded-lg w-full">
       <input
         type="text"
         placeholder="Search items by name or category"
@@ -31,7 +31,7 @@ function SearchBox() {
       />
       <FaMagnifyingGlass
         size={24}
-        className="text-black ml-2 cursor-pointer"
+        className="text-black ml-2 cursor-pointer mx-3"
         onClick={() => handleSearch(searchTerm)}
       />
     </div>

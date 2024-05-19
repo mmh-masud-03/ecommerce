@@ -54,12 +54,12 @@ const HeroSection = () => (
       <CategoryList />
       <ExploreButton />
     </div>
-    <div className="w-3/4 ml-4 border-2">
+    <div className="w-full md:w-3/4 md:ml-4 border-2">
       <AliceCarousel
         mouseTracking
         items={items}
-        // autoPlay
-        // infinite
+        autoPlay
+        infinite
         animationDuration={2000}
       />
     </div>

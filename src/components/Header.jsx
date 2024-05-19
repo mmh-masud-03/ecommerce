@@ -20,8 +20,12 @@ const Header = () => {
 
   return (
     <header className=" fixed top-0 left-0 right-0 bg-blue-800 text-slate-300 p-4 z-50 shadow-md ">
-      <div className="md:hidden w-full">
+      <div className="md:hidden w-full flex flex-row gap-4 items-center ">
+        <Image src={"/assets/logo.jpg"} alt="logo" width={50} height={50} />
         <SearchBox />
+        <span className="text-2xl">
+          <UserDropdown username={username} />
+        </span>
       </div>
       <nav className="hidden md:flex justify-between items-center">
         <div>

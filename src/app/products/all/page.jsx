@@ -19,7 +19,7 @@ function AllProducts() {
       <span className="text-4xl font-semibold my-5 mx-auto">
         Explore All Products of Our Shop
       </span>
-      <div className="grid grid-cols-4 gap-3 mx-8">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mx-8">
         {products.map((product) => (
           <ProductCard key={product._id} product={product} />
         ))}
