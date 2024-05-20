@@ -96,25 +96,27 @@ const Cart = ({ setShowCart }) => {
                       </p>
                     </div>
                   </div>
-                  <div className="flex items-center">
-                    <button
-                      onClick={() => dispatch(decreaseQuantity(item._id))}
-                      className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded-l"
-                    >
-                      -
-                    </button>
-                    <span className="bg-gray-100 text-gray-800 font-bold py-2 px-4">
-                      {item.quantity}
-                    </span>
-                    <button
-                      onClick={() => dispatch(increaseQuantity(item._id))}
-                      className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded-r"
-                    >
-                      +
-                    </button>
+                  <div className="flex flex-col md:flex-row items-center gap-2">
+                    <div className="flex ">
+                      <button
+                        onClick={() => dispatch(decreaseQuantity(item._id))}
+                        className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded-l"
+                      >
+                        -
+                      </button>
+                      <span className="bg-gray-100 text-gray-800 font-bold py-2 px-4">
+                        {item.quantity}
+                      </span>
+                      <button
+                        onClick={() => dispatch(increaseQuantity(item._id))}
+                        className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded-r"
+                      >
+                        +
+                      </button>
+                    </div>
                     <button
                       onClick={() => dispatch(removeItemFromCart(item._id))}
-                      className="ml-4 bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded"
+                      className="md:ml-4 bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded w-full"
                     >
                       Remove
                     </button>

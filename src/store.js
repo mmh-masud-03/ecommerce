@@ -4,6 +4,7 @@ import searchReducer from "./features/search/searchSlice";
 import filterReducer from "./features/filter/filterSlice";
 import cartReducer from "./features/cart/cartSlice";
 import productReducer from "./features/products/productSlice";
+import wishlistReducer from "./features/wishlist/wishlistSlice";
 const store = configureStore({
   reducer: {
     auth: authReducer,
@@ -11,6 +12,7 @@ const store = configureStore({
     filter: filterReducer,
     cart: cartReducer,
     products: productReducer,
+    wishlist: wishlistReducer,
   },
 });
 

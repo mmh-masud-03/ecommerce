@@ -3,6 +3,7 @@ import Link from "next/link";
 import { FaCartShopping, FaHeart } from "react-icons/fa6";
 import { useDispatch } from "react-redux";
 import { addItemToCart } from "@/features/cart/cartSlice";
+import { addItemToWishlist } from "@/features/wishlist/wishlistSlice";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { fetchProductById } from "@/features/products/productThunk";
@@ -17,6 +18,10 @@ function ProductCard({ product }) {
       addItemToCart({ _id, name, price, description, imageUrl, quantity: 1 })
     );
     toast.success(`${name} added to cart`);
+  };
+  const handleAddToWishlist = () => {
+    dispatch(addItemToWishlist({ _id, name, price, description, imageUrl }));
+    toast.success(`${name} added to wishlist`);
   };
   const handleClick = (e) => {
     dispatch(fetchProductById(_id));
@@ -49,9 +54,9 @@ function ProductCard({ product }) {
         >
           <FaCartShopping /> <span className="hidden md:flex">Add to cart</span>
         </button>
-        <Link href={""}>
+        <button onClick={handleAddToWishlist}>
           <FaHeart className="text-4xl text-gray-400" />
-        </Link>
+        </button>
       </div>
     </div>
   );

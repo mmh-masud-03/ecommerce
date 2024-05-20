@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   items: [],
+  totalWishlistItems: 0,
 };
 
 const wishlistSlice = createSlice({
@@ -16,6 +17,7 @@ const wishlistSlice = createSlice({
         state.items.push({
           ...newItem,
         });
+        state.totalWishlistItems += 1;
       }
     },
     removeItemFromWishlist: (state, action) => {
@@ -23,10 +25,12 @@ const wishlistSlice = createSlice({
       const existingItem = state.items.find((item) => item._id === _id);
       if (existingItem) {
         state.items = state.items.filter((item) => item._id !== _id);
+        state.totalWishlistItems -= 1;
       }
     },
   },
 });
 
-export const { addItemToWishlist, removeItemFromWishlist } = cartSlice.actions;
+export const { addItemToWishlist, removeItemFromWishlist } =
+  wishlistSlice.actions;
 export default wishlistSlice.reducer;

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { FaCartShopping, FaHeart, FaU, FaUser } from "react-icons/fa6";
 import SearchBox from "./SearchBox";
 import Cart from "./Cart";
+import Wishlist from "./Wishlist";
 import { useSelector } from "react-redux";
 import Image from "next/image";
 import { getUserNameFromCookie } from "@/utils/utilityFunctions";
@@ -11,10 +12,17 @@ import UserDropdown from "./UserDropdown";
 
 const SmallHeader = () => {
   const [showCart, setShowCart] = React.useState(false);
+  const [showWishlist, setShowWishlist] = React.useState(false);
   const totalQuantity = useSelector((state) => state.cart.totalQuantity);
+  const totalWishlist = useSelector(
+    (state) => state.wishlist.totalWishlistItems
+  );
 
   const toggleCart = () => {
     setShowCart(!showCart);
+  };
+  const toggleWishlist = () => {
+    setShowWishlist(!showWishlist);
   };
   const username = getUserNameFromCookie();
 
@@ -52,7 +60,12 @@ const SmallHeader = () => {
             </button>
           </li>
           <li>
-            <button className="hover:text-gray-300">
+            <button className="hover:text-gray-300" onClick={toggleWishlist}>
+              {totalWishlist > 0 && (
+                <span className="absolute  bg-red-500 text-white text-xs rounded-full px-2 py-1">
+                  {totalWishlist}
+                </span>
+              )}
               <FaHeart />
             </button>
           </li>
@@ -62,6 +75,12 @@ const SmallHeader = () => {
         </ul>
       </nav>
       {showCart && <Cart showCart={showCart} setShowCart={setShowCart} />}
+      {showWishlist && (
+        <Wishlist
+          showWishlist={showWishlist}
+          setShowWishlist={setShowWishlist}
+        />
+      )}
     </header>
   );
 };
