@@ -3,9 +3,11 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { FaUser } from "react-icons/fa6";
 import Cookies from "js-cookie";
+import { useRouter } from "next/navigation";
 
 const UserDropdown = ({ username }) => {
   const [showDropdown, setShowDropdown] = useState(false);
+  const router = useRouter();
 
   const toggleDropdown = () => {
     setShowDropdown(!showDropdown);
@@ -15,7 +17,11 @@ const UserDropdown = ({ username }) => {
       method: "POST",
     });
     Cookies.remove("userName");
-    window.location.reload();
+    Cookies.remove("userId");
+    router.push("/");
+    setTimeout(() => {
+      window.location.reload();
+    }, 2000);
   };
 
   return (

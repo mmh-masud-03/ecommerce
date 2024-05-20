@@ -27,7 +27,7 @@ const Orders = () => {
         <p>No orders found.</p>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {orders.map((order) => (
+          {orders.reverse().map((order) => (
             <div key={order._id} className="bg-white rounded-lg shadow-md p-4">
               <h2 className="text-lg font-semibold mb-2">
                 Order ID: {order._id}

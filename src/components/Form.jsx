@@ -59,7 +59,7 @@ const Form = ({ type }) => {
         router.push("/");
         setTimeout(() => {
           window.location.reload();
-        }, 1500);
+        }, 2000);
       } else if (res.status === 400) {
         toast.error("Invalid email or password");
       } else {

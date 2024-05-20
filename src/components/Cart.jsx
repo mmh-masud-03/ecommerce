@@ -9,9 +9,12 @@ import {
 } from "@/features/cart/cartSlice";
 import { FaTimes } from "react-icons/fa";
 import Cookies from "js-cookie";
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 const Cart = ({ setShowCart }) => {
   const dispatch = useDispatch();
+  const router = useRouter();
   const cartItems = useSelector((state) => state.cart.items);
   const totalQuantity = useSelector((state) => state.cart.totalQuantity);
   const totalPrice = useSelector((state) => state.cart.totalPrice);
@@ -35,7 +38,10 @@ const Cart = ({ setShowCart }) => {
           paymentIntent: {}, // Add any payment details if necessary
         }),
       });
-
+      if (response.ok) {
+        toast.success("Order placed successfully");
+        router.push("/user/orders");
+      }
       if (!response.ok) {
         throw new Error("Failed to place order");
       }
