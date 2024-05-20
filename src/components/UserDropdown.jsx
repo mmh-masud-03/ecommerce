@@ -33,13 +33,13 @@ const UserDropdown = ({ username }) => {
       {showDropdown &&
         (username ? (
           <div className="absolute md:right-0 md:mt-2 w-48 bg-white text-black rounded-md shadow-lg z-50 text-base">
-            <Link href="/profile">
+            <Link href="/user/profile">
               <div className="block px-4 py-2 hover:bg-gray-200">Profile</div>
             </Link>
-            <Link href="/orders">
+            <Link href="/user/orders">
               <div className="block px-4 py-2 hover:bg-gray-200">Orders</div>
             </Link>
-            <Link href="/address-book">
+            <Link href="/user/address-book">
               <div className="block px-4 py-2 hover:bg-gray-200">
                 Address Book
               </div>

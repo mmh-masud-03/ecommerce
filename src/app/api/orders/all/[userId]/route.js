@@ -1,11 +1,10 @@
 import connectDB from "@/mongodb";
 import Order from "@/models/Order";
 import User from "@/models/User";
-export const GET = async (req, res) => {
+export const GET = async (req, { params }) => {
   try {
     await connectDB();
-    const body = await req.json();
-    const { userId } = body;
+    const userId = params.userId;
     const orders = await Order.find({ user: userId })
       .populate("user", "name email")
       .exec();
