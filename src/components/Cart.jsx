@@ -5,14 +5,51 @@ import {
   increaseQuantity,
   decreaseQuantity,
   removeItemFromCart,
+  clearCart,
 } from "@/features/cart/cartSlice";
 import { FaTimes } from "react-icons/fa";
+import Cookies from "js-cookie";
 
 const Cart = ({ setShowCart }) => {
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.items);
   const totalQuantity = useSelector((state) => state.cart.totalQuantity);
   const totalPrice = useSelector((state) => state.cart.totalPrice);
+
+  const handlePlaceOrder = async () => {
+    const userId = Cookies.get("userId");
+    const products = cartItems.map((item) => ({
+      productId: item._id,
+      quantity: item.quantity,
+    }));
+
+    try {
+      const response = await fetch("/api/orders/create", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          userId,
+          products,
+          paymentIntent: {}, // Add any payment details if necessary
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to place order");
+      }
+
+      const result = await response.json();
+      console.log("Order placed successfully:", result);
+      // Clear cart or show success message
+      dispatch(clearCart());
+      setShowCart(false); // Close the cart modal
+    } catch (error) {
+      console.error("Error placing order:", error);
+      // Handle error (show error message to user)
+    }
+  };
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
@@ -79,13 +116,19 @@ const Cart = ({ setShowCart }) => {
                 </li>
               ))}
             </ul>
-            <div className="mt-8 flex justify-end">
+            <div className="mt-8 flex justify-between items-center">
               <div className="bg-gray-100 rounded-md px-4 py-2">
                 <p className="text-gray-600">Total Quantity: {totalQuantity}</p>
                 <p className="text-gray-600 font-bold">
                   Total Price: ${totalPrice.toFixed(2)}
                 </p>
               </div>
+              <button
+                onClick={handlePlaceOrder}
+                className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
+              >
+                Place Order
+              </button>
             </div>
           </div>
         )}

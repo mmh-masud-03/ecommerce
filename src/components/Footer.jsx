@@ -16,22 +16,22 @@ const Footer = () => {
             <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
             <ul>
               <li>
-                <Link href="/about" className="hover:text-gray-400">
+                <Link href="/" className="hover:text-gray-400">
                   About Us
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="hover:text-gray-400">
+                <Link href="/" className="hover:text-gray-400">
                   Contact Us
                 </Link>
               </li>
               <li>
-                <Link href="/terms" className="hover:text-gray-400">
+                <Link href="/" className="hover:text-gray-400">
                   Terms and Conditions
                 </Link>
               </li>
               <li>
-                <Link href="/privacy" className="hover:text-gray-400">
+                <Link href="/" className="hover:text-gray-400">
                   Privacy Policy
                 </Link>
               </li>
@@ -40,22 +40,44 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-semibold mb-4">Categories</h3>
             {/* Add your categories here */}
+            <ul>
+              <li>
+                <Link href="/" className="hover:text-gray-400">
+                  Phone
+                </Link>
+              </li>
+              <li>
+                <Link href="/" className="hover:text-gray-400">
+                  Audio
+                </Link>
+              </li>
+              <li>
+                <Link href="/" className="hover:text-gray-400">
+                  Laptop
+                </Link>
+              </li>
+              <li>
+                <Link href="/" className="hover:text-gray-400">
+                  Camera
+                </Link>
+              </li>{" "}
+            </ul>
           </div>
           <div>
             <h3 className="text-lg font-semibold mb-4">Customer Service</h3>
             <ul>
               <li>
-                <Link href="/faq" className="hover:text-gray-400">
+                <Link href="/" className="hover:text-gray-400">
                   FAQ
                 </Link>
               </li>
               <li>
-                <Link href="/returns" className="hover:text-gray-400">
+                <Link href="/" className="hover:text-gray-400">
                   Returns & Exchanges
                 </Link>
               </li>
               <li>
-                <Link href="/shipping" className="hover:text-gray-400">
+                <Link href="/" className="hover:text-gray-400">
                   Shipping & Delivery
                 </Link>
               </li>

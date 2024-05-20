@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import Image from "next/image";
 import Cookies from "js-cookie";
+import { Toaster } from "react-hot-toast";
 
 const Form = ({ type }) => {
   const {
@@ -31,10 +32,11 @@ const Form = ({ type }) => {
       if (res.ok) {
         toast.success("Registered successfully");
         router.push("/user/login");
-      }
-
-      if (res.error) {
-        toast.error("Something went wrong");
+      } else if (res.status === 409) {
+        toast.error("User already exists");
+      } else {
+        const errorData = await res.json();
+        toast.error(errorData.message || "Something went wrong");
       }
     }
 
@@ -47,21 +49,24 @@ const Form = ({ type }) => {
         body: JSON.stringify(data),
       });
       const user = await res.json();
-      const { username } = user;
+      const { _id, username } = user;
       const inOneHour = new Date(new Date().getTime() + 60 * 60 * 1000);
 
       if (res.ok) {
         Cookies.set("userName", username, { expires: inOneHour });
+        Cookies.set("userId", _id, { expires: inOneHour });
         toast.success("Logged in successfully");
         router.push("/");
         setTimeout(() => {
           window.location.reload();
         }, 1500);
-      }
-
-      if (res.error) {
+      } else if (res.status === 400) {
         toast.error("Invalid email or password");
+      } else {
+        const errorData = await res.json();
+        toast.error(errorData.message || "Something went wrong");
       }
+      console.log(res.status);
     }
   };
 
@@ -160,6 +165,7 @@ const Form = ({ type }) => {
           </Link>
         )}
       </div>
+      <Toaster />
     </div>
   );
 };

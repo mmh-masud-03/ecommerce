@@ -25,13 +25,17 @@ export async function POST(req) {
     const user = await User.findOne({ email });
 
     if (!user) {
-      return new Response("Invalid credentials", { status: 400 });
+      return new Response(JSON.stringify("Invalid credentials"), {
+        status: 400,
+      });
     }
 
     const isMatched = await compare(password, user?.password);
 
     if (!isMatched) {
-      return new Response("Invalid credentials", { status: 400 });
+      return new Response(JSON.stringify("Invalid credentials"), {
+        status: 400,
+      });
     }
 
     if (isMatched) {

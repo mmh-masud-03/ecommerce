@@ -18,7 +18,7 @@ function productPage() {
     return <div>Error: {error}</div>;
   }
   return (
-    <div className="mx-8">
+    <div className="mx-8 mb-6">
       {/* <HeroSection /> */}
       {categoryName && (
         <div className="text-3xl text-center font-semibold mb-6">
