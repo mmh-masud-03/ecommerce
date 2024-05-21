@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import ProductCard from "@/components/ProductCard";
 import { useParams } from "next/navigation";
+import SkeletonPulse from "@/components/SkeletonPulse";
 
 function ProductPage() {
   const [isLoading, setIsLoading] = useState(true);
@@ -30,7 +31,7 @@ function ProductPage() {
   }, [searchQuery]);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <SkeletonPulse />;
   }
 
   if (error) {

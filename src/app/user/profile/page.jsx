@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import Cookies from "js-cookie";
+import SkeletonPulse from "@/components/SkeletonPulse";
 
 const UserProfile = () => {
   const [user, setUser] = useState(null);
@@ -8,6 +9,7 @@ const UserProfile = () => {
   const [addresses, setAddresses] = useState([]);
   const [paymentOptions, setPaymentOptions] = useState([]);
   const [newUsername, setNewUsername] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -16,6 +18,7 @@ const UserProfile = () => {
         const userResponse = await fetch(`/api/user/${userId}`);
         const userData = await userResponse.json();
         setUser(userData);
+        setIsLoading(false);
 
         const ordersResponse = await fetch(`/api/orders/all/${userId}`);
         const ordersData = await ordersResponse.json();
@@ -52,13 +55,14 @@ const UserProfile = () => {
         },
         body: JSON.stringify({ username: newUsername }),
       });
-
+      setIsLoading(true);
       if (response.ok) {
         setUser((prevUser) => ({
           ...prevUser,
           username: newUsername,
         }));
         setNewUsername("");
+        setIsLoading(false);
       } else {
         console.error("Error updating username");
       }
@@ -68,7 +72,7 @@ const UserProfile = () => {
   };
 
   if (!user) {
-    return <div>Loading...</div>;
+    return <SkeletonPulse />;
   }
 
   return (

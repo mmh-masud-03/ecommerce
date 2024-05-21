@@ -1,13 +1,14 @@
 "use client";
 import { useSelector } from "react-redux";
 import ProductCard from "./ProductCard";
+import SkeletonPulse from "./SkeletonPulse";
 function FilteredProducts() {
   const filterResults = useSelector((state) => state.filter.filterResults);
   const isLoading = useSelector((state) => state.filter.isLoading);
   const error = useSelector((state) => state.filter.error);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <SkeletonPulse />;
   }
 
   if (error) {

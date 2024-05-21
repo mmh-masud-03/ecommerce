@@ -2,19 +2,23 @@
 
 import ProductCard from "@/components/ProductCard";
 import { useEffect, useState } from "react";
+import SkeletonPulse from "@/components/SkeletonPulse";
 
 function AllProducts() {
   const [products, setProducts] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const getAllProducts = async () => {
     const response = await fetch("/api/products");
     const data = await response.json();
-    console.log(data);
     setProducts(data);
+    setIsLoading(false);
   };
   useEffect(() => {
     getAllProducts();
   }, []);
-  return (
+  return isLoading ? (
+    <SkeletonPulse />
+  ) : (
     <div className="flex flex-col gap-2 mb-6">
       <span className="text-4xl font-semibold my-5 mx-3">
         Explore All Products of Our Shop

@@ -1,9 +1,11 @@
 "use client";
 import Cookies from "js-cookie";
 import React, { useState, useEffect } from "react";
+import SkeletonPulse from "@/components/SkeletonPulse";
 
 const Orders = () => {
   const [orders, setOrders] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchOrders = async () => {
@@ -12,6 +14,7 @@ const Orders = () => {
         const response = await fetch(`/api/orders/all/${userId}`);
         const data = await response.json();
         setOrders(data);
+        setIsLoading(false);
       } catch (error) {
         console.error("Error fetching orders:", error);
       }
@@ -20,7 +23,9 @@ const Orders = () => {
     fetchOrders();
   }, []);
 
-  return (
+  return isLoading ? (
+    <SkeletonPulse />
+  ) : (
     <div className="container mx-auto px-3 py-8">
       <h1 className="text-2xl font-bold mb-4">My Orders</h1>
       {orders.length === 0 ? (

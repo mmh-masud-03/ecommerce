@@ -2,6 +2,7 @@
 import { useParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import ProductDetails from "@/components/ProductDetails";
+import SkeletonPulse from "@/components/SkeletonPulse";
 
 function ProductPage() {
   const { productId } = useParams();
@@ -23,7 +24,7 @@ function ProductPage() {
     getProduct();
   }, [productId]);
   if (loading) {
-    return <div>Loading...</div>;
+    return <SkeletonPulse />;
   }
   if (!product) {
     return <div>Product not found</div>;

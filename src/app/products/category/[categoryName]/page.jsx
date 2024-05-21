@@ -3,6 +3,7 @@ import HeroSection from "@/components/HeroSection";
 import React, { useState, useEffect } from "react";
 import ProductCard from "@/components/ProductCard";
 import { useParams } from "next/navigation";
+import SkeletonPulse from "@/components/SkeletonPulse";
 
 function CategoryPage() {
   const [isLoading, setIsLoading] = useState(true);
@@ -31,7 +32,7 @@ function CategoryPage() {
   }, [categoryName]);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <SkeletonPulse />;
   }
 
   if (error) {
