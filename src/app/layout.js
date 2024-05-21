@@ -9,7 +9,7 @@ import SmallHeader from "@/components/SmallHeader";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Ecommerce App",
+  title: "Gadget Hub",
   description: "Find the best products at the best prices.",
 };
 
