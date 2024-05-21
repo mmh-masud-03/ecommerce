@@ -22,9 +22,9 @@ function AllCategories() {
   );
 
   return (
-    <div className="flex flex-col mx-8 mb-7">
+    <div className="flex flex-col mx-2 md:mx-8 mb-7">
       <span className="text-xl mb-2">All Categories</span>
-      <div className="grid grid-cols-2 gap-4 md:grid-cols-7 ">
+      <div className="grid grid-cols-2 gap-2 md:gap-4 md:grid-cols-7 ">
         {categories.map((category) => {
           const product = products.find(
             (product) => product.category === category

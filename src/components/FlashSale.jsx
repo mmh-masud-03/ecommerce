@@ -24,7 +24,7 @@ function FlashSale() {
   // const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
 
   return (
-    <div className="flex flex-col gap-3 mx-8">
+    <div className="flex flex-col gap-3 mx-2 md:mx-8">
       <span className="text-xl">Just For You</span>
       <span className="text-xl font-medium">
         Sale Ends in:{" "}

@@ -5,15 +5,20 @@ import { removeItemFromWishlist } from "@/features/wishlist/wishlistSlice";
 import { FaShoppingCart, FaTimes } from "react-icons/fa";
 import Link from "next/link";
 import { addItemToCart } from "@/features/cart/cartSlice";
+import { useRouter } from "next/navigation";
 
 const Wishlist = ({ setShowWishlist }) => {
   const dispatch = useDispatch();
+  const router = useRouter();
   const wishlistItems = useSelector((state) => state.wishlist.items);
 
   const handleAddToCart = (item) => {
     dispatch(addItemToCart(item));
   };
-
+  const explore = () => {
+    setShowWishlist(false);
+    router.push("/products");
+  };
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center min-h-[40vh]">
       <div
@@ -70,12 +75,12 @@ const Wishlist = ({ setShowWishlist }) => {
           </ul>
         )}
         <div className="mt-8">
-          <Link
-            href="/products"
+          <button
+            onClick={explore}
             className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
           >
             Continue Shopping
-          </Link>
+          </button>
         </div>
       </div>
     </div>

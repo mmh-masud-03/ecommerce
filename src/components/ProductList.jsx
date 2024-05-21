@@ -17,7 +17,7 @@ function ProductList() {
   }, []);
 
   return (
-    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+    <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4">
       {products.slice(0, 12).map((product) => (
         <ProductCard key={product._id} product={product} /> // Using product.id as key
       ))}

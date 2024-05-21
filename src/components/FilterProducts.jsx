@@ -34,7 +34,7 @@ function FilterProducts() {
 
   return (
     <div>
-      <div className="bg-slate-200 p-4 rounded-md mx-8 my-6">
+      <div className="bg-slate-200 p-4 rounded-md mx-2 md:mx-8 my-6">
         <div className="mb-4">
           <span className="block text-2xl font-semibold mb-6">
             Get the best product within your budget
@@ -96,7 +96,7 @@ function FilterProducts() {
           </form>
         </div>
       </div>
-      <div className="mx-8 mb-6">
+      <div className=" mx-2 md:mx-8 mb-6">
         <FilteredProducts />
       </div>
     </div>
