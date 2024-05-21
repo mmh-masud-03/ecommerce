@@ -66,8 +66,8 @@ const HeroSection = () => (
       <AliceCarousel
         mouseTracking
         items={items}
-        // autoPlay
-        // infinite
+        autoPlay
+        infinite
         animationDuration={2000}
       />
     </div>
