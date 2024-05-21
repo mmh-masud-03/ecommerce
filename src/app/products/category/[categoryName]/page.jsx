@@ -1,14 +1,35 @@
 "use client";
-import { useSelector } from "react-redux";
 import HeroSection from "@/components/HeroSection";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import ProductCard from "@/components/ProductCard";
+import { useParams } from "next/navigation";
 
 function CategoryPage() {
-  const searchResults = useSelector((state) => state.search.searchResults);
-  const isLoading = useSelector((state) => state.search.isLoading);
-  const error = useSelector((state) => state.search.error);
-  const categoryName = useSelector((state) => state.search.searchQuery);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [searchResults, setSearchResults] = useState([]);
+  const params = useParams();
+  const { categoryName } = params;
+  useEffect(() => {
+    const fetchSearchResults = async () => {
+      try {
+        const response = await fetch(`/api/products/search/${categoryName}`, {
+          cache: "no-store",
+        });
+        if (!response.ok) {
+          throw new Error("Something went wrong!");
+        }
+        const data = await response.json();
+        setSearchResults(data);
+      } catch (error) {
+        setError(error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchSearchResults();
+  }, [categoryName]);
+
   if (isLoading) {
     return <div>Loading...</div>;
   }

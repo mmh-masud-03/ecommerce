@@ -9,7 +9,7 @@ function ExploreButton() {
         Products From Your Trusted Brands{" "}
         <button
           className="absolute bottom-2 right-2 border rounded px-3 py-2 bg-blue-400 text-white"
-          onClick={(e) => router.push("/products/all")}
+          onClick={(e) => router.push("/products")}
         >
           Explore Now
         </button>

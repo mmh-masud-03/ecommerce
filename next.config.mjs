@@ -1,13 +1,4 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-  async rewrites() {
-    return [
-      {
-        source: "/:path*",
-        destination: "/_middleware.js",
-      },
-    ];
-  },
-};
+const nextConfig = {};
 
 export default nextConfig;

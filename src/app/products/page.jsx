@@ -1,37 +1,31 @@
-// "use client";
-// import { useSelector } from "react-redux";
-// import HeroSection from "@/components/HeroSection";
-// import React from "react";
-// import ProductCard from "@/components/ProductCard";
+"use client";
 
-// function productPage() {
-//   const searchResults = useSelector((state) => state.search.searchResults);
-//   const isLoading = useSelector((state) => state.search.isLoading);
-//   const error = useSelector((state) => state.search.error);
-//   const categoryName = useSelector((state) => state.search.searchQuery);
+import ProductCard from "@/components/ProductCard";
+import { useEffect, useState } from "react";
 
-//   if (isLoading) {
-//     return <div>Loading...</div>;
-//   }
+function AllProducts() {
+  const [products, setProducts] = useState([]);
+  const getAllProducts = async () => {
+    const response = await fetch("/api/products");
+    const data = await response.json();
+    console.log(data);
+    setProducts(data);
+  };
+  useEffect(() => {
+    getAllProducts();
+  }, []);
+  return (
+    <div className="flex flex-col gap-2 mb-6">
+      <span className="text-4xl font-semibold my-5 mx-auto">
+        Explore All Products of Our Shop
+      </span>
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mx-8">
+        {products.map((product) => (
+          <ProductCard key={product._id} product={product} />
+        ))}
+      </div>
+    </div>
+  );
+}
 
-//   if (error) {
-//     return <div>Error: {error}</div>;
-//   }
-//   return (
-//     <div className="mx-8">
-//       {/* <HeroSection /> */}
-//       {categoryName && (
-//         <div className="text-3xl text-center font-semibold mb-6">
-//           Get your desired {categoryName}
-//         </div>
-//       )}
-//       <div className="grid grid-cols-4 gap-4">
-//         {searchResults.map((product) => (
-//           <ProductCard key={product._id} product={product} />
-//         ))}
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default productPage;
+export default AllProducts;

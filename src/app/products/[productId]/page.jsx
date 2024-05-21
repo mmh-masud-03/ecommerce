@@ -1,38 +1,34 @@
 "use client";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import { fetchProductById } from "@/features/products/productThunk"; // Assuming you have a thunk to fetch product by ID
-import ProductDetails from "@/components/ProductDetails"; // Assuming you have a ProductDetails component
-import { useSelectedLayoutSegments } from "next/navigation";
-const ProductPage = (req) => {
-  const segments = useSelectedLayoutSegments();
-  console.log(segments);
-  const productId = segments[1];
-  console.log(productId);
-  const dispatch = useDispatch();
-  const product = useSelector((state) => state.products.product);
-  const isLoading = useSelector((state) => state.products.isLoading);
-  const error = useSelector((state) => state.products.error);
+import { useParams } from "next/navigation";
+import React, { useEffect, useState } from "react";
+import ProductDetails from "@/components/ProductDetails";
 
-  useEffect(() => {
-    if (productId) {
-      dispatch(fetchProductById(productId));
+function ProductPage() {
+  const { productId } = useParams();
+  const [product, setProduct] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const getProduct = async () => {
+    try {
+      const response = await fetch(`/api/products/${productId}`, {
+        cache: "no-store",
+      });
+      const product = await response.json();
+      setProduct(product);
+      setLoading(false);
+    } catch (error) {
+      console.log("Error fetching product:", error);
     }
-  }, [productId, dispatch]);
-
-  if (isLoading) {
+  };
+  useEffect(() => {
+    getProduct();
+  }, [productId]);
+  if (loading) {
     return <div>Loading...</div>;
   }
-
-  if (error) {
-    return <div>Error: {error}</div>;
+  if (!product) {
+    return <div>Product not found</div>;
   }
-
-  return (
-    <div className="container mx-auto">
-      {product && <ProductDetails product={product} />}
-    </div>
-  );
-};
+  return <ProductDetails product={product} />;
+}
 
 export default ProductPage;

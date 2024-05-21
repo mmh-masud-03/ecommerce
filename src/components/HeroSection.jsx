@@ -9,42 +9,50 @@ import ExploreButton from "./ExploreButton";
 const handleDragStart = (e) => e.preventDefault();
 
 const items = [
-  <Image
-    src="/assets/carousel1_copy.jpg"
-    width={800}
-    height={400}
-    alt="item 1"
-    onDragStart={handleDragStart}
-    role="presentation"
-    className="mx-auto rounded-lg"
-  />,
-  <Image
-    src="/assets/carousel2_copy.jpg"
-    width={800}
-    height={400}
-    onDragStart={handleDragStart}
-    alt="item 2"
-    className="mx-auto rounded-lg"
-    role="presentation"
-  />,
-  <Image
-    src="/assets/carousel3_copy.jpg"
-    width={800}
-    height={400}
-    onDragStart={handleDragStart}
-    alt="item 3"
-    className="mx-auto rounded-lg"
-    role="presentation"
-  />,
-  <Image
-    src="/assets/carousel4_copy.jpg"
-    width={800}
-    height={400}
-    onDragStart={handleDragStart}
-    alt="item 4"
-    className="mx-auto rounded-lg"
-    role="presentation"
-  />,
+  <React.Fragment key="carousel-item-1">
+    <Image
+      src="/assets/carousel1_copy.jpg"
+      width={800}
+      height={400}
+      alt="item 1"
+      onDragStart={handleDragStart}
+      role="presentation"
+      className="mx-auto rounded-lg"
+    />
+  </React.Fragment>,
+  <React.Fragment key="carousel-item-2">
+    <Image
+      src="/assets/carousel2_copy.jpg"
+      width={800}
+      height={400}
+      onDragStart={handleDragStart}
+      alt="item 2"
+      className="mx-auto rounded-lg"
+      role="presentation"
+    />
+  </React.Fragment>,
+  <React.Fragment key="carousel-item-3">
+    <Image
+      src="/assets/carousel3_copy.jpg"
+      width={800}
+      height={400}
+      onDragStart={handleDragStart}
+      alt="item 3"
+      className="mx-auto rounded-lg"
+      role="presentation"
+    />
+  </React.Fragment>,
+  <React.Fragment key="carousel-item-4">
+    <Image
+      src="/assets/carousel4_copy.jpg"
+      width={800}
+      height={400}
+      onDragStart={handleDragStart}
+      alt="item 4"
+      className="mx-auto rounded-lg"
+      role="presentation"
+    />
+  </React.Fragment>,
 ];
 
 const HeroSection = () => (
