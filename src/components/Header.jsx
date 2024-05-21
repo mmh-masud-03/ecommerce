@@ -46,7 +46,7 @@ const Header = () => {
         <SearchBox />
         <ul className="flex flex-row items-stretch space-x-3 gap-4 text-4xl mr-3">
           <li>
-            <Link className="text-xl" href={"/products/all"}>
+            <Link className="text-xl" href={"/products"}>
               <Image
                 src={"/assets/products.svg"}
                 alt="menu"
