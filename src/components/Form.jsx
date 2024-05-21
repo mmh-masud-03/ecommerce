@@ -57,9 +57,7 @@ const Form = ({ type }) => {
         Cookies.set("userId", _id, { expires: inOneHour });
         toast.success("Logged in successfully");
         router.push("/");
-        setTimeout(() => {
-          window.location.reload();
-        }, 2000);
+        router.refresh();
       } else if (res.status === 400) {
         toast.error("Invalid email or password");
       } else {

@@ -19,9 +19,7 @@ const UserDropdown = ({ username }) => {
     Cookies.remove("userName");
     Cookies.remove("userId");
     router.push("/");
-    setTimeout(() => {
-      window.location.reload();
-    }, 2000);
+    router.refresh();
   };
 
   return (

@@ -11,8 +11,10 @@ import { FaTimes } from "react-icons/fa";
 import Cookies from "js-cookie";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 const Cart = ({ setShowCart }) => {
+  const userId = Cookies.get("userId");
   const dispatch = useDispatch();
   const router = useRouter();
   const cartItems = useSelector((state) => state.cart.items);
@@ -55,6 +57,11 @@ const Cart = ({ setShowCart }) => {
       console.error("Error placing order:", error);
       // Handle error (show error message to user)
     }
+  };
+  const handleUnauthenticatedUser = () => {
+    setShowCart(false);
+    toast.error("Please login to place order");
+    router.push("/user/login");
   };
 
   return (
@@ -131,12 +138,21 @@ const Cart = ({ setShowCart }) => {
                   Total Price: ${totalPrice.toFixed(2)}
                 </p>
               </div>
-              <button
-                onClick={handlePlaceOrder}
-                className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
-              >
-                Place Order
-              </button>
+              {!userId ? (
+                <button
+                  onClick={handleUnauthenticatedUser}
+                  className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
+                >
+                  Place Order
+                </button>
+              ) : (
+                <button
+                  onClick={handlePlaceOrder}
+                  className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
+                >
+                  Place Order
+                </button>
+              )}
             </div>
           </div>
         )}
