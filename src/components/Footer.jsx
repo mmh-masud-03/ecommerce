@@ -109,6 +109,9 @@ const Footer = () => {
           <p className="text-center text-sm">
             &copy; {new Date().getFullYear()} E-Commerce Store. All Rights
             Reserved.
+            <span className="ml-4">
+              &copy; This website is designed and created by Masud
+            </span>
           </p>
         </div>
       </div>
