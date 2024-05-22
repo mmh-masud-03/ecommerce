@@ -69,6 +69,7 @@ const HeroSection = () => (
         autoPlay
         infinite
         animationDuration={2000}
+        disableButtonsControls
       />
     </div>
   </div>

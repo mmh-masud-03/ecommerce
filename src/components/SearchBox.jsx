@@ -25,7 +25,7 @@ function SearchBox() {
       <input
         type="text"
         placeholder="Search items by name or category"
-        className="px-3 py-2 w-11/12 outline-none text-black rounded-lg"
+        className="px-3 py-2 w-11/12 outline-none text-black rounded-lg text-sm"
         onChange={(e) => setSearchTerm(e.target.value)}
         onKeyPress={handleKeyPress}
       />

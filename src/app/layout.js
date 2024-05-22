@@ -15,12 +15,12 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" className={inter.className}>
       <ReduxProvider>
         <body className="bg-blue-200">
           <Header />
           <SmallHeader />
-          <main className="pt-20">
+          <main className="pt-14 md:pt-20">
             {" "}
             {/* Adjust the padding-top value according to your header height */}
             {children}

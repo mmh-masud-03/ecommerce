@@ -35,16 +35,20 @@ function ProductCard({ product }) {
           <img
             src={imageUrl}
             alt={`Image of ${name}`}
-            className="rounded-lg w-32 h-32 md:w-64 md:h-56 mx-auto mb-3 hover:scale-110"
+            className="rounded-lg w-44 h-32 md:w-64 md:h-56 mx-auto mb-3 hover:scale-110"
           />
         ) : (
           <div className="h-48 w-24 bg-gray-300 flex items-center justify-center">
             <span>No Image Available</span>
           </div>
         )}
-        <h2 className="text-xl font-semibold">{name}</h2>
-        <p className="text-sm my-3 line-clamp-2 break-words">{description}</p>
-        <p className="text-xl font-semibold ">${price}</p>
+        <h2 className=" text-lg md:text-xl font-semibold">{name}</h2>
+        <p className="text-xs md:text-sm my-3 line-clamp-2 break-words">
+          {description}
+        </p>
+        <p className="text-green-500 text-md md:text-xl font-semibold ">
+          ${price}
+        </p>
       </div>
 
       <div className="flex flex-row justify-between items-center gap-5 mt-5">

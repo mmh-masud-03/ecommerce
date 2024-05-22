@@ -38,8 +38,8 @@ function ProductPage() {
     return <div>Error: {error}</div>;
   }
   return (
-    <div className="mx-2 md:mx-8 mb-6">
-      <div className="text-3xl text-center font-semibold mb-6">
+    <div className="mx-2 md:mx-8 my-6">
+      <div className="text-xl md:text-3xl text-center font-semibold mb-6">
         Get your desired {searchQuery}
       </div>
 
