@@ -1,17 +1,12 @@
 "use client";
 import React from "react";
-import { useDispatch } from "react-redux";
-import { setSearchQuery } from "@/features/search/searchSlice";
-import { fetchSearchProducts } from "@/features/search/searchThunk";
+
 import { useRouter } from "next/navigation";
 
 function CategoryCard({ category, product }) {
   const router = useRouter();
-  const dispatch = useDispatch();
   const handleSearch = (searchQuery) => {
     router.push(`/products/category/${category}`);
-    dispatch(setSearchQuery(searchQuery));
-    dispatch(fetchSearchProducts(searchQuery));
   };
 
   return (

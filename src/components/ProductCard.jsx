@@ -6,7 +6,6 @@ import { addItemToCart } from "@/features/cart/cartSlice";
 import { addItemToWishlist } from "@/features/wishlist/wishlistSlice";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
-import { fetchProductById } from "@/features/products/productThunk";
 
 function ProductCard({ product }) {
   const router = useRouter();
@@ -24,7 +23,6 @@ function ProductCard({ product }) {
     toast.success(`${name} added to wishlist`);
   };
   const handleClick = (e) => {
-    dispatch(fetchProductById(_id));
     router.push(`/products/${_id}`);
   };
 
@@ -46,7 +44,7 @@ function ProductCard({ product }) {
         <p className="text-xs md:text-sm my-3 line-clamp-2 break-words">
           {description}
         </p>
-        <p className="text-green-500 text-md md:text-xl font-semibold ">
+        <p className="text-green-600 text-md md:text-xl font-semibold ">
           ${price}
         </p>
       </div>
