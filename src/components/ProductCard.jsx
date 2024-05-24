@@ -6,12 +6,15 @@ import { addItemToCart } from "@/features/cart/cartSlice";
 import { addItemToWishlist } from "@/features/wishlist/wishlistSlice";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import { useSelector } from "react-redux";
 
 function ProductCard({ product }) {
   const router = useRouter();
   const { _id, name, price, description, imageUrl } = product;
   const dispatch = useDispatch();
-
+  const wishlistItems = useSelector((state) => state.wishlist.items);
+  //filtering the wishlist items to check if the product is already in the wishlist
+  const isItemInWishlist = wishlistItems.find((item) => item._id === _id);
   const handleAddToCart = () => {
     dispatch(
       addItemToCart({ _id, name, price, description, imageUrl, quantity: 1 })
@@ -57,7 +60,13 @@ function ProductCard({ product }) {
           <FaCartShopping /> <span className="hidden md:flex">Add to cart</span>
         </button>
         <button onClick={handleAddToWishlist}>
-          <FaHeart className="text-4xl text-gray-400" />
+          <FaHeart
+            className={
+              isItemInWishlist
+                ? `text-4xl text-red-600`
+                : `text-4xl text-gray-400`
+            }
+          />
         </button>
       </div>
     </div>
