@@ -27,7 +27,7 @@ const Header = () => {
   const username = getUserNameFromCookie();
 
   return (
-    <header className=" fixed top-0 left-0 right-0 bg-blue-800 text-slate-300 p-4 z-50 shadow-md ">
+    <header className=" fixed top-0 left-0 right-0 bg-[#3D52A0] text-slate-300 p-4 z-50 shadow-md ">
       <div className="md:hidden w-full flex flex-row gap-4 items-center ">
         <Link href={"/"}>
           <Image src={"/assets/logo.jpg"} alt="logo" width={50} height={50} />

@@ -13,7 +13,7 @@ const SubscribeNewsletter = () => {
   };
 
   return (
-    <div className="flex items-center justify-center py-12 bg-blue-300 mt-10 ">
+    <div className="flex items-center justify-center py-12 bg-gray-200 mt-10 ">
       <div className="w-full max-w-md px-8 py-6 space-y-8 bg-white rounded-lg shadow-md">
         <h2 className="text-2xl font-bold text-center text-gray-900">
           Subscribe to our Newsletter

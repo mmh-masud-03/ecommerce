@@ -3,7 +3,7 @@ import { useRouter } from "next/navigation";
 function ExploreButton() {
   const router = useRouter();
   return (
-    <div className="relative bg-gradient-to-r from-indigo-100 to-red-200 w-full h-[9rem] ml-4 mt-10 rounded-lg">
+    <div className="relative bg-gradient-to-r from-indigo-100 to-gray-200 w-full h-[9rem] ml-4 mt-10 rounded-lg">
       <div className="text-xl font-semibold px-3 py-3">
         {" "}
         Products From Your Trusted Brands{" "}

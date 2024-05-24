@@ -27,7 +27,7 @@ const SmallHeader = () => {
   const username = getUserNameFromCookie();
 
   return (
-    <header className="fixed bottom-0 left-0 right-0 bg-blue-800 text-slate-300 p-4 z-50 shadow-md md:hidden">
+    <header className="fixed bottom-0 left-0 right-0 bg-[#3D52A0] text-slate-300 p-4 z-50 shadow-md md:hidden">
       <nav className="flex justify-between items-center">
         <div>
           <Link href="/" className="text-2xl font-semibold">

@@ -12,7 +12,7 @@ function CategoryCard({ category, product }) {
   return (
     <button
       key={category}
-      className="flex flex-row gap-3 bg-blue-300 justify-center items-center p-4 rounded-md hover:bg-blue-400"
+      className="flex flex-row gap-3 bg-gray-200 justify-center items-center p-4 rounded-md hover:text-red-700"
       onClick={() => handleSearch(category)}
     >
       <img
@@ -20,7 +20,7 @@ function CategoryCard({ category, product }) {
         alt={category}
         className="rounded-full h-10 w-10"
       />{" "}
-      <div className="hover:text-gray-700">{category}</div>
+      <div>{category}</div>
     </button>
   );
 }
