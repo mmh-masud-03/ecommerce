@@ -27,7 +27,7 @@ function ProductCard({ product }) {
   };
 
   return (
-    <div className="flex flex-col justify-between items-center bg-slate-200 p-4 text-center pb-8 rounded ">
+    <div className="flex flex-col hover:bg-slate-300 justify-between items-center bg-slate-200 p-4 text-center pb-8 rounded ">
       <div onClick={handleClick} className="cursor-pointer">
         {imageUrl ? (
           <img

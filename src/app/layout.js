@@ -17,7 +17,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={inter.className}>
       <ReduxProvider>
-        <body className="bg-[#f2f4f8]">
+        <body className="bg-white">
           <Header />
           <SmallHeader />
           <main className="pt-14 md:pt-20">

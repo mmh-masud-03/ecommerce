@@ -20,6 +20,7 @@ const UserDropdown = ({ username }) => {
     Cookies.remove("userId");
     router.push("/");
     router.refresh();
+    setShowDropdown(false);
   };
 
   return (
