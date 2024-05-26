@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { FaUser } from "react-icons/fa6";
 import Cookies from "js-cookie";
@@ -8,10 +8,30 @@ import { useRouter } from "next/navigation";
 const UserDropdown = ({ username }) => {
   const [showDropdown, setShowDropdown] = useState(false);
   const router = useRouter();
+  const dropdownRef = useRef(null);
 
   const toggleDropdown = () => {
     setShowDropdown(!showDropdown);
   };
+
+  const handleClickOutside = (event) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      setShowDropdown(false);
+    }
+  };
+
+  useEffect(() => {
+    if (showDropdown) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [showDropdown]);
+
   const logout = async () => {
     await fetch("/api/auth/logout", {
       method: "POST",
@@ -24,10 +44,10 @@ const UserDropdown = ({ username }) => {
   };
 
   return (
-    <div className="relative">
+    <div className="relative" ref={dropdownRef}>
       <button
         onClick={toggleDropdown}
-        className=" border rounded-full hover:text-gray-300 flex items-center"
+        className="border rounded-full hover:text-gray-300 flex items-center"
       >
         {username ? (
           <div className="text-sm text-white p-2">{username}</div>
