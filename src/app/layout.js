@@ -20,11 +20,7 @@ export default function RootLayout({ children }) {
         <body className="bg-white">
           <Header />
           <SmallHeader />
-          <main className="pt-14 md:pt-20">
-            {" "}
-            {/* Adjust the padding-top value according to your header height */}
-            {children}
-          </main>{" "}
+          <main className="pt-14 md:pt-20">{children}</main>
           <Footer />
           <Toaster />
         </body>
