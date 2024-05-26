@@ -14,11 +14,11 @@ export const POST = async (req, { params }) => {
       { new: true }
     );
     if (!updatedProduct) {
-      return new Response("Not found", { status: 200 });
+      return new Response(JSON.stringify("Not found"), { status: 200 });
     }
     return new Response(JSON.stringify(updatedProduct), { status: 200 });
   } catch (err) {
     console.log(err);
-    return new Response("Error updating product", { status: 500 });
+    return new Response(JSON.stringify("Error updating product"), { status: 500 });
   }
 };

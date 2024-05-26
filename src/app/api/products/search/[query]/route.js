@@ -18,6 +18,6 @@ export const GET = async (req, { params }) => {
     }
     return new Response(JSON.stringify(searchedProducts), { status: 200 });
   } catch (err) {
-    return new Response("Error searching product", { status: 500 });
+    return new Response(JSON.stringify("Error searching product"), { status: 500 });
   }
 };

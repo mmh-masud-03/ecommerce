@@ -10,7 +10,9 @@ export const POST = async (req, res) => {
       email,
     });
     if (existingUser) {
-      return new Response("User already exists", { status: 409 });
+      return new Response(JSON.stringify("User already exists"), {
+        status: 409,
+      });
     }
     const hashedPassword = await hash(password, 10);
 
@@ -22,6 +24,8 @@ export const POST = async (req, res) => {
     return new Response(JSON.stringify(newUser), { status: 200 });
   } catch (err) {
     console.log(err);
-    return new Response("Failed to create user");
+    return new Response(
+      JSON.stringify("Failed to create user", { status: 500 })
+    );
   }
 };

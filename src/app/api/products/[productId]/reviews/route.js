@@ -6,6 +6,8 @@ export const GET = async (req, res) => {
     const allReviews = await Review.find();
     return new Response(JSON.stringify(allReviews), { status: 200 });
   } catch (err) {
-    return new Response("Error fetching reviews", { status: 500 });
+    return new Response(JSON.stringify("Error fetching reviews"), {
+      status: 500,
+    });
   }
 };

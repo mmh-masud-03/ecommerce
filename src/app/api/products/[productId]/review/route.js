@@ -14,6 +14,8 @@ export const POST = async (req, res) => {
 
     return new Response(JSON.stringify(newReview), { status: 200 });
   } catch (err) {
-    return new Response("Error creating review", { status: 500 });
+    return new Response(JSON.stringify("Error creating review"), {
+      status: 500,
+    });
   }
 };

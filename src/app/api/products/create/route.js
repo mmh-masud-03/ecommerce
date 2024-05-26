@@ -8,7 +8,7 @@ export const POST = async (req, res) => {
     await connectDB();
     const existingProduct = await Product.findOne({ name });
     if (existingProduct) {
-      return new Response("Product already exists");
+      return new Response(JSON.stringify("Product already exists"));
     }
     const newProduct = await Product.create({
       name,
@@ -21,6 +21,8 @@ export const POST = async (req, res) => {
     return new Response(JSON.stringify(newProduct), { status: 200 });
   } catch (err) {
     console.log(err);
-    return new Response("Error creating product", { status: 500 });
+    return new Response(JSON.stringify("Error creating product"), {
+      status: 500,
+    });
   }
 };

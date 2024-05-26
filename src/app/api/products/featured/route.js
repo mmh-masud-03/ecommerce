@@ -9,6 +9,8 @@ export const GET = async (req, res) => {
 
     return new Response(JSON.stringify(filteredProducts), { status: 200 });
   } catch (err) {
-    return new Response("Error fetching products", { status: 500 });
+    return new Response(JSON.stringify("Error fetching products"), {
+      status: 500,
+    });
   }
 };
