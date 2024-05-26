@@ -10,7 +10,7 @@ const ProductNotFound = () => {
           Product Not Found
         </h1>
         <p className="text-gray-600 mt-4">
-          Oops! The product you're looking for doesn't seem to exist.
+          Oops! The product you&apos;re looking for doesn&apos;t seem to exist.
         </p>
       </div>
       <div className="mt-8">
