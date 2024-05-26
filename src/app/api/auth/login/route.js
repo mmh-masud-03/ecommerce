@@ -19,7 +19,9 @@ export async function POST(req) {
     const { email, password } = body;
 
     if (!email || !password) {
-      return new Response("Username and password required", { status: 400 });
+      return new Response(JSON.stringify("Username and password required"), {
+        status: 400,
+      });
     }
 
     const user = await User.findOne({ email });

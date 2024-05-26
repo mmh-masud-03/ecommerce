@@ -13,6 +13,9 @@ export const GET = async (req, { params }) => {
         },
       ],
     });
+    if (searchedProducts.length === 0) {
+      return new Response(JSON.stringify("No products found"), { status: 404 });
+    }
     return new Response(JSON.stringify(searchedProducts), { status: 200 });
   } catch (err) {
     return new Response("Error searching product", { status: 500 });
