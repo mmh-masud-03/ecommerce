@@ -1,5 +1,6 @@
 import connectDB from "@/mongodb";
 import User from "@/models/User";
+
 export const POST = async (req, { params }) => {
   try {
     const userId = params.userId;
@@ -11,8 +12,12 @@ export const POST = async (req, { params }) => {
       { username },
       { new: true }
     );
+    if (!updatedUser) {
+      return new Response(JSON.stringify("User not found"), { status: 404 });
+    }
     return new Response(JSON.stringify(updatedUser), { status: 200 });
   } catch (err) {
-    return new Response(JSON.stringify("Error Updating user"), { status: 500 });
+    console.error("Error updating user:", err);
+    return new Response(JSON.stringify("Error updating user"), { status: 500 });
   }
 };

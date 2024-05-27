@@ -46,6 +46,7 @@ const UserProfile = () => {
   };
 
   const handleUsernameUpdate = async () => {
+    setIsLoading(true);
     try {
       const userId = Cookies.get("userId");
       const response = await fetch(`/api/user/${userId}/update`, {
@@ -55,23 +56,24 @@ const UserProfile = () => {
         },
         body: JSON.stringify({ username: newUsername }),
       });
-      setIsLoading(true);
       if (response.ok) {
+        const updatedUser = await response.json();
         setUser((prevUser) => ({
           ...prevUser,
-          username: newUsername,
+          username: updatedUser.username,
         }));
         setNewUsername("");
-        setIsLoading(false);
       } else {
         console.error("Error updating username");
       }
     } catch (error) {
       console.error("Error updating username:", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
-  if (!user) {
+  if (isLoading) {
     return <SkeletonPulse />;
   }
 
